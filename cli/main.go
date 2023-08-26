@@ -20,7 +20,6 @@ func main() {
 	app.Usage = "convert draftjs json to html"
 	app.Action = func(c *cli.Context) error {
 		draftState := c.Args().First()
-		fmt.Println(draftState)
 		contentState := draftjs.ContentState{}
 		if err := json.Unmarshal([]byte(draftState), &contentState); err != nil {
 			fmt.Println(err)
