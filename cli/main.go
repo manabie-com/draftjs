@@ -15,16 +15,41 @@ import (
 // arg 1: stringified json
 // output: html
 func main() {
+	var file string
+
 	app := cli.NewApp()
 	app.Name = "draftjs-cli"
 	app.Usage = "convert draftjs json to html"
+
+	app.Flags = append(app.Flags, cli.StringFlag{
+		Name:        "file",
+		Usage:       "file json draftjs data",
+		Destination: &file,
+	})
+
 	app.Action = func(c *cli.Context) error {
-		draftState := c.Args().First()
 		contentState := draftjs.ContentState{}
-		if err := json.Unmarshal([]byte(draftState), &contentState); err != nil {
-			fmt.Println(err)
-			return err
+		if file != "" {
+			f, err := os.Open(file)
+			if err != nil {
+				return err
+			}
+			defer f.Close()
+			if err := json.NewDecoder(f).Decode(&contentState); err != nil {
+				return err
+			}
+		} else {
+			draftState := c.Args().First()
+			if err := json.Unmarshal([]byte(draftState), &contentState); err != nil {
+				fmt.Println(err)
+				return err
+			}
 		}
+
+		if contentState.Blocks == nil {
+			return fmt.Errorf("no blocks found")
+		}
+
 		config := draftjs.NewDefaultConfig()
 		s := draftjs.Render(&contentState, config)
 		fmt.Println(s)
