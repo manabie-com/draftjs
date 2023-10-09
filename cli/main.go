@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -34,11 +35,24 @@ func main() {
 				return err
 			}
 			defer f.Close()
-			if err := json.NewDecoder(f).Decode(&contentState); err != nil {
+			// encode base64 to json
+			data := make([]byte, 0)
+
+			decoder := base64.NewDecoder(base64.StdEncoding, f)
+			decoder.Read(data)
+
+			if err := json.Unmarshal(data, &contentState); err != nil {
 				return err
 			}
+
 		} else {
-			draftState := c.Args().First()
+			data_arg := c.Args().First()
+
+			draftState, err := base64.StdEncoding.DecodeString(data_arg)
+			if err != nil {
+				return err
+			}
+
 			if err := json.Unmarshal([]byte(draftState), &contentState); err != nil {
 				return err
 			}
