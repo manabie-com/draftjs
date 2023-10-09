@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/ejilay/draftjs"
@@ -41,7 +40,6 @@ func main() {
 		} else {
 			draftState := c.Args().First()
 			if err := json.Unmarshal([]byte(draftState), &contentState); err != nil {
-				fmt.Println(err)
 				return err
 			}
 		}
@@ -52,12 +50,12 @@ func main() {
 
 		config := draftjs.NewDefaultConfig()
 		s := draftjs.Render(&contentState, config)
-		fmt.Println(s)
+		fmt.Println("html>>>", s)
 		return nil
 	}
 
 	err := app.Run(os.Args)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 }
