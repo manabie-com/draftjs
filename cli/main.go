@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -35,24 +34,13 @@ func main() {
 				return err
 			}
 			defer f.Close()
-			// encode base64 to json
-			data := make([]byte, 0)
+			// from stringify json
 
-			decoder := base64.NewDecoder(base64.StdEncoding, f)
-			decoder.Read(data)
-
-			if err := json.Unmarshal(data, &contentState); err != nil {
+			if err := json.NewDecoder(f).Decode(&contentState); err != nil {
 				return err
 			}
-
 		} else {
-			data_arg := c.Args().First()
-
-			draftState, err := base64.StdEncoding.DecodeString(data_arg)
-			if err != nil {
-				return err
-			}
-
+			draftState := c.Args().First()
 			if err := json.Unmarshal([]byte(draftState), &contentState); err != nil {
 				return err
 			}
