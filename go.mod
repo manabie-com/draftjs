@@ -1,4 +1,4 @@
-module github.com/ejilay/draftjs
+module github.com/manabie-com/draftjs
 
 go 1.18
 

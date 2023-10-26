@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/ejilay/draftjs"
+	"github.com/manabie-com/draftjs"
 )
 
 func TestRender(t *testing.T) {
