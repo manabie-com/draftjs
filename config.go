@@ -177,7 +177,17 @@ func SetDefaultDecorators(config *Config) {
 	config.SetEntityDecorator(descriptor)
 
 	descriptor = new(Descriptor)
+	descriptor.Type = "INLINE_IMAGE"
+	descriptor.Decorator = new(ImageDecoratorV2)
+	config.SetEntityDecorator(descriptor)
+
+	descriptor = new(Descriptor)
 	descriptor.Type = "BLOCK_AUDIO"
+	descriptor.Decorator = new(AudioDecorator)
+	config.SetEntityDecorator(descriptor)
+
+	descriptor = new(Descriptor)
+	descriptor.Type = "INLINE_AUDIO"
 	descriptor.Decorator = new(AudioDecorator)
 	config.SetEntityDecorator(descriptor)
 
