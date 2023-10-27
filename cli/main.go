@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ejilay/draftjs"
+	"github.com/manabie-com/draftjs"
 	"github.com/urfave/cli"
 )
 

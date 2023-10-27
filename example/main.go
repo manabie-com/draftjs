@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/ejilay/draftjs"
-	"github.com/ejilay/draftjs/tests"
+	"github.com/manabie-com/draftjs"
+	"github.com/manabie-com/draftjs/tests"
 )
 
 func main() {
