@@ -117,10 +117,10 @@ func SetDefaultBlocks(config *Config) {
 	descriptor.Element = "blockquote"
 	config.SetBlockMapElement(descriptor)
 
-	descriptor = new(Descriptor)
-	descriptor.Type = "atomic"
-	descriptor.Element = "figure"
-	config.SetBlockMapElement(descriptor)
+	// descriptor = new(Descriptor)
+	// descriptor.Type = "atomic"
+	// descriptor.Element = "figure"
+	// config.SetBlockMapElement(descriptor)
 }
 
 func SetDefaultStyles(config *Config) {
@@ -172,28 +172,33 @@ func SetDefaultDecorators(config *Config) {
 	config.SetEntityDecorator(descriptor)
 
 	descriptor = new(Descriptor)
+	descriptor.Type = "AUDIO"
+	descriptor.Decorator = new(AudioDecorator)
+	config.SetEntityDecorator(descriptor)
+
+	descriptor = new(Descriptor)
 	descriptor.Type = "BLOCK_IMAGE"
-	descriptor.Decorator = new(ImageDecoratorV2)
+	descriptor.Decorator = new(BlockImageDecorator)
 	config.SetEntityDecorator(descriptor)
 
 	descriptor = new(Descriptor)
 	descriptor.Type = "INLINE_IMAGE"
-	descriptor.Decorator = new(ImageDecoratorV2)
+	descriptor.Decorator = new(InlineImageDecorator)
 	config.SetEntityDecorator(descriptor)
 
 	descriptor = new(Descriptor)
 	descriptor.Type = "BLOCK_AUDIO"
-	descriptor.Decorator = new(AudioDecorator)
+	descriptor.Decorator = new(BlockAudioDecorator)
 	config.SetEntityDecorator(descriptor)
 
 	descriptor = new(Descriptor)
 	descriptor.Type = "INLINE_AUDIO"
-	descriptor.Decorator = new(AudioDecorator)
+	descriptor.Decorator = new(InlineAudioDecorator)
 	config.SetEntityDecorator(descriptor)
 
 	descriptor = new(Descriptor)
 	descriptor.Type = "BLOCK_MATHJAX"
-	descriptor.Decorator = new(MathJaxDecorator)
+	descriptor.Decorator = new(BlockMathJaxDecorator)
 	config.SetEntityDecorator(descriptor)
 
 	descriptor = new(Descriptor)
