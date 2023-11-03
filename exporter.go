@@ -3,7 +3,6 @@ package draftjs
 
 import (
 	"bytes"
-	"strings"
 )
 
 func renderBlocks(contentState *ContentState, config *Config, blockIterator *BlockIterator, buf *bytes.Buffer) {
@@ -49,7 +48,7 @@ func Render(contentState *ContentState, config *Config) string {
 
 	RenderWithBuf(contentState, config, &buf)
 	var bufString = buf.String()
-	bufString = strings.Replace(bufString, "<div></div>", "<br>", -1)
+	// bufString = strings.Replace(bufString, "<div></div>", "<br>", -1)
 	return bufString
 }
 
