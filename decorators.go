@@ -37,9 +37,9 @@ type BlockImageDecorator struct {
 
 func (decorator *BlockImageDecorator) RenderBeginning(data map[string]string) string {
 	if alt, ok := data["alt"]; ok {
-		return fmt.Sprintf("<img src=\"%s\" alt=\"%s\">", data["data"], alt)
+		return fmt.Sprintf("<img src=%s alt=\"%s\">", data["data"], alt)
 	}
-	return fmt.Sprintf("<figure><img src=\"%s\">", data["data"])
+	return fmt.Sprintf("<figure><img src=%s>", data["data"])
 }
 
 func (decorator *BlockImageDecorator) RenderEnding(data map[string]string) string {
