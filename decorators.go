@@ -37,9 +37,9 @@ type ImageDecoratorV2 struct {
 
 func (decorator *ImageDecoratorV2) RenderBeginning(data map[string]string) string {
 	if alt, ok := data["alt"]; ok {
-		return fmt.Sprintf("<img src=\"%s\" alt=\"%s\">", data["data"], alt)
+		return fmt.Sprintf("<img src=%s alt=\"%s\">", data["data"], alt)
 	}
-	return fmt.Sprintf("<img src=\"%s\">", data["data"])
+	return fmt.Sprintf("<img src=%s>", data["data"])
 }
 
 func (decorator *ImageDecoratorV2) RenderEnding(data map[string]string) string {
