@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/ejilay/draftjs"
+	"github.com/manabie-com/draftjs"
 )
 
 func TestRender(t *testing.T) {
@@ -13,6 +13,7 @@ func TestRender(t *testing.T) {
 		contentState draftjs.ContentState
 		err          error
 	)
+
 	config := draftjs.NewDefaultConfig()
 	for _, test := range GetTestsTable() {
 		if err = json.Unmarshal([]byte(test.State), &contentState); err != nil {

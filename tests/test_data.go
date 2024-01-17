@@ -11,32 +11,32 @@ func GetTestsTable() []TestTable {
 		{
 			Name:     "1",
 			State:    `{"entityMap":{},"blocks":[{"key":"4g603","text":"dasdasdasdsadsaывфвыфв","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":22,"style":"BOLD"}],"entityRanges":[],"data":{}}]}`,
-			Expected: `<p><strong>dasdasdasdsadsaывфвыфв</strong></p>`,
+			Expected: `<div><strong>dasdasdasdsadsaывфвыфв</strong></div>`,
 		},
 		{
 			Name:     "2",
 			State:    `{"entityMap":{"0":{"type":"LINK","mutability":"MUTABLE","data":{"url":"ya.ru"}}},"blocks":[{"key":"4g603","text":"dasdasdasdsadsaывфвыфв","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":12,"length":2,"key":0}],"data":{}}]}`,
-			Expected: `<p>dasdasdasdsa<a href="ya.ru" target="_blank">ds</a>aывфвыфв</p>`,
+			Expected: `<div>dasdasdasdsa<a href="ya.ru" target="_blank">ds</a>aывфвыфв</div>`,
 		},
 		{
 			Name:     "3",
 			State:    `{"entityMap":{},"blocks":[{"key":"18u09","text":"\"Война и мир\" на экранах Би-Би-Си","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]}`,
-			Expected: `<p>&#34;Война и мир&#34; на экранах Би-Би-Си</p>`,
+			Expected: `<div>&#34;Война и мир&#34; на экранах Би-Би-Си</div>`,
 		},
 		{
 			Name:     "4",
 			State:    `{"entityMap":{},"blocks":[{"key":"ek0ec","text":"Яндекс.Метро — интерактивная карта метро Москвы с расчётом времени и прокладкой маршрутов с учётом данных о закрытии станций и вес","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":7,"length":5,"style":"ITALIC"},{"offset":35,"length":5,"style":"ITALIC"}],"entityRanges":[],"data":{}}]}`,
-			Expected: `<p>Яндекс.<em>Метро</em> — интерактивная карта <em>метро</em> Москвы с расчётом времени и прокладкой маршрутов с учётом данных о закрытии станций и вес</p>`,
+			Expected: `<div>Яндекс.<em>Метро</em> — интерактивная карта <em>метро</em> Москвы с расчётом времени и прокладкой маршрутов с учётом данных о закрытии станций и вес</div>`,
 		},
 		{
 			Name:     "5",
 			State:    `{"entityMap":{},"blocks":[{"key":"fdcqk","text":"Тест 11 Тест 11 Тест 11  Тест 11  Тест 11  Тест 11  Тест 11 ","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]}`,
-			Expected: `<p>Тест 11 Тест 11 Тест 11  Тест 11  Тест 11  Тест 11  Тест 11 </p>`,
+			Expected: `<div>Тест 11 Тест 11 Тест 11  Тест 11  Тест 11  Тест 11  Тест 11 </div>`,
 		},
 		{
 			Name:     "6",
 			State:    `{"entityMap":{},"blocks":[{"key":"ao1cv","text":"Парам пам пам пам пам ","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]}`,
-			Expected: `<p>Парам пам пам пам пам </p>`,
+			Expected: `<div>Парам пам пам пам пам </div>`,
 		},
 		{
 			Name:     "7",
@@ -51,67 +51,67 @@ func GetTestsTable() []TestTable {
 		{
 			Name:     "9",
 			State:    `{"entityMap":{},"blocks":[{"key":"4g603","text":"H2O","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":1,"length":1,"style":"SUBSCRIPT"}],"entityRanges":[],"data":{}}]}`,
-			Expected: "<p>H<sub>2</sub>O</p>",
+			Expected: "<div>H<sub>2</sub>O</div>",
 		},
 		{
 			Name:     "10",
 			State:    `{"entityMap":{},"blocks":[{"key":"4g603","text":"210 = 1024","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":1,"length":2,"style":"SUPERSCRIPT"}],"entityRanges":[],"data":{}}]}`,
-			Expected: "<p>2<sup>10</sup> = 1024</p>",
+			Expected: "<div>2<sup>10</sup> = 1024</div>",
 		},
 		{
 			Name:     "11",
 			State:    `{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"Описание к изображению","depth":0}],"entityMap":{}}`,
-			Expected: "<p>Описание к изображению</p>",
+			Expected: "<div>Описание к изображению</div>",
 		},
 		{
 			Name:     "12",
 			State:    `{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"Я прочитала книгу на английском, как только она появилась. На русском читать не буду, мне не нравится этот перевод.","depth":0}],"entityMap":{}}`,
-			Expected: "<p>Я прочитала книгу на английском, как только она появилась. На русском читать не буду, мне не нравится этот перевод.</p>",
+			Expected: "<div>Я прочитала книгу на английском, как только она появилась. На русском читать не буду, мне не нравится этот перевод.</div>",
 		},
 		{
 			Name:     "13",
 			State:    `{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"Наталья Водянова, российская супермодель","depth":0}],"entityMap":{}}`,
-			Expected: "<p>Наталья Водянова, российская супермодель</p>",
+			Expected: "<div>Наталья Водянова, российская супермодель</div>",
 		},
 		{
 			Name:     "14",
 			State:    `{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"Some Words Here aaaaaaaa","depth":0}],"entityMap":{}}`,
-			Expected: "<p>Some Words Here aaaaaaaa</p>",
+			Expected: "<div>Some Words Here aaaaaaaa</div>",
 		},
 		{
 			Name:     "15",
 			State:    `{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"Не может быть идеального продукта. Если ты уверен, что создал идеальный продукт или идеальное СМИ, то тебе пора на пенсию.","depth":0}],"entityMap":{}}`,
-			Expected: "<p>Не может быть идеального продукта. Если ты уверен, что создал идеальный продукт или идеальное СМИ, то тебе пора на пенсию.</p>",
+			Expected: "<div>Не может быть идеального продукта. Если ты уверен, что создал идеальный продукт или идеальное СМИ, то тебе пора на пенсию.</div>",
 		},
 		{
 			Name:     "16",
 			State:    `{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"","depth":0}],"entityMap":{}}`,
-			Expected: "<p></p>",
+			Expected: "<div></div>",
 		},
 		{
 			Name:     "17",
 			State:    `{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"Текст карточки с картинкой","depth":0}],"entityMap":{}}`,
-			Expected: "<p>Текст карточки с картинкой</p>",
+			Expected: "<div>Текст карточки с картинкой</div>",
 		},
 		{
 			Name:     "18",
 			State:    `{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"Абзац текста в карточке","depth":0}],"entityMap":{}}`,
-			Expected: "<p>Абзац текста в карточке</p>",
+			Expected: "<div>Абзац текста в карточке</div>",
 		},
 		{
 			Name:     "19",
 			State:    `{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"Заголовок карточки","depth":0}],"entityMap":{}}`,
-			Expected: "<p>Заголовок карточки</p>",
+			Expected: "<div>Заголовок карточки</div>",
 		},
 		{
 			Name:     "20",
 			State:    `{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"Some Words Here aaaaaaaa","depth":0}],"entityMap":{}}`,
-			Expected: "<p>Some Words Here aaaaaaaa</p>",
+			Expected: "<div>Some Words Here aaaaaaaa</div>",
 		},
 		{
 			Name:     "21",
 			State:    `{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"Не может быть идеального продукта. Если ты уверен, что создал идеальный продукт или идеальное СМИ, то тебе пора на пенсию.","depth":0}],"entityMap":{}}`,
-			Expected: "<p>Не может быть идеального продукта. Если ты уверен, что создал идеальный продукт или идеальное СМИ, то тебе пора на пенсию.</p>",
+			Expected: "<div>Не может быть идеального продукта. Если ты уверен, что создал идеальный продукт или идеальное СМИ, то тебе пора на пенсию.</div>",
 		},
 		{
 			Name:     "22",
@@ -126,27 +126,27 @@ func GetTestsTable() []TestTable {
 		{
 			Name:     "24",
 			State:    `{"blocks":[{"type":"unstyled","inlineStyleRanges":[{"length":5,"offset":0,"style":"ITALIC"},{"length":6,"offset":6,"style":"BOLD"},{"length":19,"offset":15,"style":"UNDERLINE"}],"entityRanges":[],"data":{},"text":"Абзац текста с рич-форматированием","depth":0}],"entityMap":{}}`,
-			Expected: "<p><em>Абзац</em> <strong>текста</strong> с <ins>рич-форматированием</ins></p>",
+			Expected: "<div><em>Абзац</em> <strong>текста</strong> с <ins>рич-форматированием</ins></div>",
 		},
 		{
 			Name:     "25",
 			State:    `{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"Привет, Life!","depth":0}],"entityMap":{}}`,
-			Expected: "<p>Привет, Life!</p>",
+			Expected: "<div>Привет, Life!</div>",
 		},
 		{
 			Name:     "26",
 			State:    `{"blocks":[{"key":"16tag","text":"qwertyuiopasdfghjkl","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":19,"style":"CODE"},{"offset":0,"length":12,"style":"BOLD"},{"offset":1,"length":14,"style":"STRIKETHROUGH"},{"offset":4,"length":12,"style":"ITALIC"}],"entityRanges":[{"offset":3,"length":15,"key":0}],"data":{}}],"entityMap":{"0":{"type":"LINK","mutability":"MUTABLE","data":{"url":"ya.ru"}}}}`,
-			Expected: `<p><code><strong>q</strong></code><code><strong><del>we</del></strong></code><a href="ya.ru" target="_blank"><code><strong><del>r</del></strong></code></a><a href="ya.ru" target="_blank"><code><strong><del><em>tyuiopas</em></del></strong></code></a><a href="ya.ru" target="_blank"><code><del><em>dfg</em></del></code></a><a href="ya.ru" target="_blank"><code><em>h</em></code></a><a href="ya.ru" target="_blank"><code>jk</code></a><code>l</code></p>`,
+			Expected: `<div><code><strong>q</strong></code><code><strong><del>we</del></strong></code><a href="ya.ru" target="_blank"><code><strong><del>r</del></strong></code></a><a href="ya.ru" target="_blank"><code><strong><del><em>tyuiopas</em></del></strong></code></a><a href="ya.ru" target="_blank"><code><del><em>dfg</em></del></code></a><a href="ya.ru" target="_blank"><code><em>h</em></code></a><a href="ya.ru" target="_blank"><code>jk</code></a><code>l</code></div>`,
 		},
 		{
 			Name:     "One symbol",
 			State:    `{"entityMap":{"0":{"type":"LINK","data":{"url":"http://example.com"}}},"blocks":[{"text":"Q","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":1,"style":"BOLD"}],"entityRanges":[{"offset":0,"length":1,"key":0}]}]}`,
-			Expected: `<p><a href="http://example.com" target="_blank"><strong>Q</strong></a></p>`,
+			Expected: `<div><a href="http://example.com" target="_blank"><strong>Q</strong></a></div>`,
 		},
 		{
 			Name:     "Wrong Ranges",
 			State:    `{"entityMap":{"0":{"type":"LINK","data":{"url":"http://example.com"}}},"blocks":[{"text":"Q","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":5,"length":1,"style":"BOLD"}],"entityRanges":[{"offset":0,"length":1,"key":0}]}]}`,
-			Expected: `<p><a href="http://example.com" target="_blank">Q</a></p>`,
+			Expected: `<div><a href="http://example.com" target="_blank">Q</a></div>`,
 		},
 	}
 }

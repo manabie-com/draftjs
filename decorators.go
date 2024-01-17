@@ -2,7 +2,6 @@ package draftjs
 
 import (
 	"fmt"
-	"os"
 )
 
 type Decorator interface {
@@ -25,11 +24,8 @@ type ImageDecorator struct {
 }
 
 func (decorator *ImageDecorator) RenderBeginning(data map[string]string) string {
-	maxHeight := os.Getenv("IMAGE_MAX_HEIGHT")
-	maxHeightStr := ""
-	if maxHeight != "" {
-		maxHeightStr = fmt.Sprintf(" style=\"max-height:%spx;\"", maxHeight)
-	}
+	maxHeightStr := GetMaxHeightStyle()
+
 	if alt, ok := data["alt"]; ok {
 		return fmt.Sprintf("<img%s src=\"%s\" alt=\"%s\">", data["data"], maxHeightStr, alt)
 	}
@@ -40,18 +36,58 @@ func (decorator *ImageDecorator) RenderEnding(data map[string]string) string {
 	return "</img>"
 }
 
-type ImageDecoratorV2 struct {
+type BlockImageDecorator struct {
 }
 
-func (decorator *ImageDecoratorV2) RenderBeginning(data map[string]string) string {
+func (decorator *BlockImageDecorator) RenderBeginning(data map[string]string) string {
+	maxHeightStr := GetMaxHeightStyle()
 	if alt, ok := data["alt"]; ok {
-		return fmt.Sprintf("<img src=%s alt=\"%s\">", data["data"], alt)
+		return fmt.Sprintf("<figure><img%s src=\"%s\" alt=\"%s\">", maxHeightStr, data["data"], alt)
 	}
-	return fmt.Sprintf("<img src=%s>", data["data"])
+	return fmt.Sprintf("<figure><img%s src=\"%s\">", maxHeightStr, data["data"])
 }
 
-func (decorator *ImageDecoratorV2) RenderEnding(data map[string]string) string {
+func (decorator *BlockImageDecorator) RenderEnding(data map[string]string) string {
+	return "</img></figure>"
+}
+
+type InlineImageDecorator struct {
+}
+
+func (decorator *InlineImageDecorator) RenderBeginning(data map[string]string) string {
+	maxHeightStr := GetMaxHeightStyle()
+
+	if alt, ok := data["alt"]; ok {
+		return fmt.Sprintf("<img%s src=%s alt=\"%s\">", maxHeightStr, data["data"], alt)
+	}
+	return fmt.Sprintf("<img%s src=%s>", maxHeightStr, data["data"])
+}
+
+func (decorator *InlineImageDecorator) RenderEnding(data map[string]string) string {
 	return "</img>"
+}
+
+type BlockAudioDecorator struct {
+}
+
+func (decorator *BlockAudioDecorator) RenderBeginning(data map[string]string) string {
+	return fmt.Sprintf("<figure><audio controls><source src=\"%s\" type=\"audio/mpeg\">", data["data"])
+}
+
+func (decorator *BlockAudioDecorator) RenderEnding(data map[string]string) string {
+	return "</audio></figure>"
+}
+
+type InlineAudioDecorator struct {
+}
+
+func (decorator *InlineAudioDecorator) RenderBeginning(data map[string]string) string {
+	return fmt.Sprintf("<audio controls><source src=\"%s\" type=\"audio/mpeg\">", data["data"])
+}
+
+func (decorator *InlineAudioDecorator) RenderEnding(data map[string]string) string {
+
+	return "</audio>"
 }
 
 type AudioDecorator struct {
@@ -65,14 +101,14 @@ func (decorator *AudioDecorator) RenderEnding(data map[string]string) string {
 	return "</audio>"
 }
 
-type MathJaxDecorator struct {
+type BlockMathJaxDecorator struct {
 }
 
-func (decorator *MathJaxDecorator) RenderBeginning(data map[string]string) string {
+func (decorator *BlockMathJaxDecorator) RenderBeginning(data map[string]string) string {
 	return fmt.Sprintf("\\[%s\\]", data["data"])
 }
 
-func (decorator *MathJaxDecorator) RenderEnding(data map[string]string) string {
+func (decorator *BlockMathJaxDecorator) RenderEnding(data map[string]string) string {
 	return ""
 }
 

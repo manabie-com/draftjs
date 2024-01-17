@@ -3,6 +3,7 @@ package draftjs
 import (
 	"bytes"
 	"fmt"
+	"os"
 	"sort"
 	"strconv"
 	"text/template"
@@ -369,4 +370,13 @@ func invalidRange(r *Range, maxLength int) bool {
 		return true
 	}
 	return false
+}
+
+func GetMaxHeightStyle() string {
+	maxHeight := os.Getenv("IMAGE_MAX_HEIGHT")
+	maxHeightStr := ""
+	if maxHeight != "" {
+		maxHeightStr = fmt.Sprintf(" style=\"max-height:%spx;\"", maxHeight)
+	}
+	return maxHeightStr
 }
