@@ -148,6 +148,11 @@ func GetTestsTable() []TestTable {
 			State:    `{"entityMap":{"0":{"type":"LINK","data":{"url":"http://example.com"}}},"blocks":[{"text":"Q","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":5,"length":1,"style":"BOLD"}],"entityRanges":[{"offset":0,"length":1,"key":0}]}]}`,
 			Expected: `<div><a href="http://example.com" target="_blank">Q</a></div>`,
 		},
+		{
+			Name:     "Matjax",
+			State:    `{"entityMap":{},"blocks":[{"key":"4g603","text":"\\(0<x<10\\) = 10","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]}`,
+			Expected: `<div>\(0&lt;x&lt;10\)</div>`,
+		},
 	}
 }
 

@@ -6,6 +6,7 @@ import (
 	"os"
 	"sort"
 	"strconv"
+	"strings"
 	"text/template"
 	"unicode/utf8"
 )
@@ -379,4 +380,12 @@ func GetMaxHeightStyle() string {
 		maxHeightStr = fmt.Sprintf(" style=\"max-height:%spx;\"", maxHeight)
 	}
 	return maxHeightStr
+}
+
+func GetMathJaxData(data string) string {
+	latex := data
+	// replace '>', '<' with '&gt;', '&lt;'
+	latex = strings.Replace(latex, ">", "&gt;", -1)
+	latex = strings.Replace(latex, "<", "&lt;", -1)
+	return fmt.Sprintf("\\(%s\\)", latex)
 }

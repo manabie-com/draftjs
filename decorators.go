@@ -2,6 +2,7 @@ package draftjs
 
 import (
 	"fmt"
+	"strings"
 )
 
 type Decorator interface {
@@ -105,7 +106,11 @@ type BlockMathJaxDecorator struct {
 }
 
 func (decorator *BlockMathJaxDecorator) RenderBeginning(data map[string]string) string {
-	return fmt.Sprintf("\\[%s\\]", data["data"])
+	latex := data["data"]
+	// replace '>', '<' with '&gt;', '&lt;'
+	latex = strings.Replace(latex, ">", "&gt;", -1)
+	latex = strings.Replace(latex, "<", "&lt;", -1)
+	return fmt.Sprintf("\\[%s\\]", latex)
 }
 
 func (decorator *BlockMathJaxDecorator) RenderEnding(data map[string]string) string {
@@ -116,7 +121,11 @@ type InlineMathJaxDecorator struct {
 }
 
 func (decorator *InlineMathJaxDecorator) RenderBeginning(data map[string]string) string {
-	return fmt.Sprintf("\\(%s\\)", data["data"])
+	latex := data["data"]
+	// replace '>', '<' with '&gt;', '&lt;'
+	latex = strings.Replace(latex, ">", "&gt;", -1)
+	latex = strings.Replace(latex, "<", "&lt;", -1)
+	return fmt.Sprintf("\\(%s\\)", latex)
 }
 
 func (decorator *InlineMathJaxDecorator) RenderEnding(data map[string]string) string {
