@@ -148,6 +148,16 @@ func GetTestsTable() []TestTable {
 			State:    `{"entityMap":{"0":{"type":"LINK","data":{"url":"http://example.com"}}},"blocks":[{"text":"Q","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":5,"length":1,"style":"BOLD"}],"entityRanges":[{"offset":0,"length":1,"key":0}]}]}`,
 			Expected: `<div><a href="http://example.com" target="_blank">Q</a></div>`,
 		},
+		{
+			Name:     "Matjax",
+			State:    `{"entityMap":{},"blocks":[{"key":"4g603","text":"\\(0<x<10\\)","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]}`,
+			Expected: `<div>\(0&lt;x&lt;10\)</div>`,
+		},
+		{
+			Name:     "Matjax 2",
+			State:    `{"entityMap":{},"blocks":[{"key":"4g603","text":"<div>(1) \\(0<a<b,a+b=2\\) のとき，\\(1,a b, a^{2}+b^{2}\\) を小さい方から順に並べよ。</div>","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]}`,
+			Expected: `<div>&lt;div&gt;(1) \(0&lt;a&lt;b,a+b=2\) のとき，\(1,a b, a^{2}+b^{2}\) を小さい方から順に並べよ。&lt;/div&gt;</div>`,
+		},
 	}
 }
 
