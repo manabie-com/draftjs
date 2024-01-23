@@ -387,5 +387,5 @@ func GetMathJaxData(data string) string {
 	// replace '>', '<' with '&gt;', '&lt;'
 	latex = strings.Replace(latex, ">", "&gt;", -1)
 	latex = strings.Replace(latex, "<", "&lt;", -1)
-	return fmt.Sprintf("\\(%s\\)", latex)
+	return latex
 }
